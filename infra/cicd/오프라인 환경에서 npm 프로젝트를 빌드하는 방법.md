@@ -1,5 +1,5 @@
 ---
-title: 오프라인 환경에서 npm 프로젝트를 빌드하는 방법
+title: 오프라인에서 npm 프로젝트 빌드
 date: 2023-02-09
 draft: false
 tags:

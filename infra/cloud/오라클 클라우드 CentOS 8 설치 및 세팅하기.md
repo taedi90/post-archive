@@ -1,5 +1,5 @@
 ---
-title: 오라클 클라우드 CentOS 8 설치 및 세팅하기
+title: 오라클 클라우드 CentOS 8 세팅
 date: 2021-12-01
 draft: false
 tags:

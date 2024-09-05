@@ -1,5 +1,5 @@
 ---
-title: CUDAFailed to initialize NVML- Unknown Error 오류
+title: CUDAFailed to initialize NVML 오류
 date: 2023-02-08
 draft: false
 tags:

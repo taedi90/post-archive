@@ -1,5 +1,5 @@
 ---
-title: kubernetes 데몬셋(daemonset) 파드를 scale 하는 방법
+title: k8s 데몬셋(daemonset) 파드 scale
 date: 2023-01-30
 draft: false
 tags:

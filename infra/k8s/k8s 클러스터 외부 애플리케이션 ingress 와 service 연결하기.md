@@ -1,5 +1,5 @@
 ---
-title: kubernetes 클러스터 외부 애플리케이션 ingress 와 service 연결하기
+title: 외부 애플리케이션 ingress 와 service 연결
 date: 2023-01-30
 draft: false
 tags:

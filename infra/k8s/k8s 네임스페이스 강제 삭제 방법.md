@@ -1,5 +1,5 @@
 ---
-title: kubernetes 네임스페이스 강제 삭제 방법
+title: k8s 네임스페이스 강제 삭제
 date: 2023-01-30
 draft: false
 tags: 

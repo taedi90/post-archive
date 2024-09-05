@@ -1,5 +1,5 @@
 ---
-title: kubernetes Statefulset 에서 storageClassName 업데이트 하기
+title: k8s Statefulset storageClassName 업데이트
 date: 2023-01-30
 draft: false
 tags:

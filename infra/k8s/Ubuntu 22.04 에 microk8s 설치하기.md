@@ -1,5 +1,5 @@
 ---
-title: Ubuntu 22.04 에 microk8s 설치하기
+title: Ubuntu 22.04 에 microk8s 설치
 date: 2022-11-28
 draft: false
 tags:
