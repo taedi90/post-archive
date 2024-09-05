@@ -34,6 +34,7 @@ tags:
 | 2024.08 |         | B 고객사<br>챗봇 서비스 3차 사업  |                                                                      |
 ### Stack
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
+![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
 
 ### 📞Contact
 - Email : taedi90@gmail.com
