@@ -3,7 +3,7 @@ title: 환영합니다!
 draft: false
 tags:
 ---
-[태그](/tags/)
+[전체글 목록](/tags/)
 
 ### 🙋🏻About Me
 
