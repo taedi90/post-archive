@@ -4,6 +4,7 @@ date: 2023-02-09
 draft: false
 tags:
   - node
+  - cicd
 banner: 
 cssclasses: 
 description: 오프라인 환경에서 yarn install 을 하기위한 방법을 알아 보았습니다.
