@@ -27,7 +27,7 @@ completed:
 
   
 
-```YAML
+yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -47,7 +47,7 @@ spec:
 
   
 
-```YAML
+yaml
 kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:

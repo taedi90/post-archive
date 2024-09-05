@@ -23,7 +23,7 @@ completed:
 
 # 코드
 
-```JavaScript
+javascript
 'use strict';
 
 /**

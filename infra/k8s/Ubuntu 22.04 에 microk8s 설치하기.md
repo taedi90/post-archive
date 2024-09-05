@@ -19,7 +19,7 @@ microk8s 설치 중 calico-kube-controller 가 CrashLoopBackOff 상태에 머무
 
   
 
-```Bash
+bash
 $ sudo apt update
 $ sudo timedatectl set-timezone 'Asia/Seoul'
 
@@ -33,7 +33,7 @@ $ date
 
   
 
-```Bash
+bash
 $ sudo vim /etc/default/grub
 ```
 
@@ -45,7 +45,7 @@ $ sudo vim /etc/default/grub
 
 - 작성 완료 예시
     
-    ```Bash
+    bash
     $ sudo cat /etc/default/grub
     # If you change this file, run 'update-grub' afterwards to update
     # /boot/grub/grub.cfg.
@@ -85,7 +85,7 @@ $ sudo vim /etc/default/grub
 
   
 
-```Bash
+bash
 $ sudo update-initramfs -u
 $ sudo update-grub
 ```
@@ -96,7 +96,7 @@ $ sudo update-grub
 
   
 
-```Bash
+bash
 $ cat << EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
@@ -118,7 +118,7 @@ $ sudo iptables -tnat --flush
 
   
 
-```Bash
+bash
 # microk8s 설치
 $ sudo snap install microk8s --classic
 
@@ -141,7 +141,7 @@ $ microk8s start
 
   
 
-```Bash
+bash
 $ sudo apt install bash-completion
 
 # k 는 'microk8s kubectl' mc 는 'microk8s' 로 세팅했다.

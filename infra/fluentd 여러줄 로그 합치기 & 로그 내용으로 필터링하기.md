@@ -43,7 +43,7 @@ completed:
 
 검색해보니 몇가지 방법이 있었는데 그 중 ‘fluent-plugin-concat’ 을 사용했다. 정규식을 통해서 합병할 로그의 시작과 끝을 지정할 수 있는 것이 맘에 들었고, 회사에서 개발중인 프로젝트들이 꽤나 규칙성있는 로그를 출력하고 있는 것 또한 플러그인과 잘 어울리는 듯 했다.
 
-```Bash
+bash
 ## 멀티라인 로그 합병(concat)
 <filter **>
   @type concat
@@ -57,7 +57,7 @@ completed:
 
 fluent-plugin-concat 플러그인을 사용하기 위해서는 플러그인 설치가 필요하다.
 
-```Bash
+bash
 gem install fluent-plugin-concat
 ```
 
@@ -67,7 +67,7 @@ gem install fluent-plugin-concat
 
 grep 필터를 사용하면 정규식을 만족하는 로그를 모두 예외처리할 수 있다.
 
-```Bash
+bash
 ## info/warn/error 레벨 로그만 수집
 <filter **>
   @type grep

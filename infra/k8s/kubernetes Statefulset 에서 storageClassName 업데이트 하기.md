@@ -25,7 +25,7 @@ Statefulset 으로 구성된 Elasticsearch 파드를 업데이트 하려니 다�
 
 수정을 위해서는 Statefulset 을 삭제하고 다시 생성해주는 방법이 있다고 한다.
 
-```Bash
+bash
 ## 현재 구성을 yaml 파일로 저장
 kubectl get statefulset some-statefulset -o yaml > statefulset.yaml
 
