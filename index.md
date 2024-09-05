@@ -32,8 +32,7 @@ tags:
 | 2023.06 | 2024.04 | B 고객사<br>챗봇 서비스 2차 사업  | - 운영서버 삼중화<br>- L4(파이오링크) 설정<br>- docker swarm                       |
 | 2024.04 |         | C 고객사<br>평가 솔루션 자동화 사업 | - 인프라<br>- 백엔드 개발                                                    |
 | 2024.08 |         | B 고객사<br>챗봇 서비스 3차 사업  |                                                                      |
-### Stack
-![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=for-the-badge&logo=redis&logoColor=white)![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)![ElasticSearch](https://img.shields.io/badge/-ElasticSearch-005571?style=for-the-badge&logo=elasticsearch)![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)![Jenkins](https://img.shields.io/badge/jenkins-%232C5263.svg?style=for-the-badge&logo=jenkins&logoColor=white)
+
 
 ### 📞Contact
 - Email : taedi90@gmail.com
