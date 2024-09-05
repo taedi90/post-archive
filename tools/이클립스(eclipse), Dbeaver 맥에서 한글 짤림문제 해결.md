@@ -90,7 +90,7 @@ Karabiner-Elements 는 키보드와 마우스 입력신호를 조건에 따라(c
 
   
 
-```JSON
+```json
 {
   "title": "이클립스 한글 짤림 해결",
   "rules": [
@@ -189,7 +189,7 @@ enter, tab, space 키들은 경우에 따라 작성한 코드가 변형(줄바�
 
   
 
-```JSON
+```json
 "key_code": "caps_lock",
 "hold_down_milliseconds": 200
 ```

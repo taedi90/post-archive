@@ -13,7 +13,7 @@ completed:
 ---
 ## 요약
 
-```Bash
+```bash
 namespace=<네임스페이스>
 daemonset_name=<데몬셋 배포 명>
 
@@ -28,7 +28,7 @@ kubectl -n "${namespace}" patch daemonset "${daemonset_name}" --type json -p='[{
 
 Statefulset 이나 Replicaset 은 `scale` 을 사용하여 파드를 모두 종료하거나 원하는 사이즈로 조절이 가능하다.
 
-```Bash
+```bash
 kubectl scale --replicas <원하는 숫자> -n <네임스페이스> statefulset <statefulset 네임>
 ```
 
@@ -42,7 +42,7 @@ Daemonset 을 `scale` 한다는 것은 말이 안되지만 (기본적으로 노�
 
 (이런 식으로 응용할 수 있을거라곤 생각지도 못했다.. 와우)
 
-```Bash
+```bash
 namespace=<네임스페이스>
 daemonset_name=<데몬셋 배포 명>
 

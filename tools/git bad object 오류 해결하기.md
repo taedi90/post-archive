@@ -25,7 +25,7 @@ git 프로젝트에서 새로운 remote 를 추가하고 데이터를 pull 하�
 
 .git/refs/remotes/origin/main 파일을 백업하고, git gc 를 수행해준다. 정상적으로 동작하면 백업한 tmp 파일은 삭제하면 된다.
 
-```Bash
+```bash
 mv .git/refs/remotes/origin/main ./tmp
 git gc
 ```

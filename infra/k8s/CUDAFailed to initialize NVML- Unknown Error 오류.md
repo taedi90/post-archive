@@ -48,21 +48,21 @@ completed:
 3. runc version 1.1.2 이하로 낮추기 → 실패
 4. nvidia-experimental 런타임 사용 → 실패 `runtimehandler "nvidia-experimental" not supported`
     
-    ```YAML
+    ```yaml
     # gpu-operator operator.runtimeClass 설정
     runtimeClassName: nvidia-experimental
     ```
     
 5. 헬스 체크를 통해 오류 발생하면 파드 삭제하기 → 정상 동작, 깔끔한 방법 같지 않아서 적용하지는 않았음
     
-    ```YAML
+    ```yaml
     # 쉘 스크립트로 다음 사항을 검증한다.
     nvidia-smi || exit 1
     ```
     
 6. gpu 파드에 privileged 권한 주기 → 정상 동작!
     
-    ```Bash
+    ```bash
     # 파드 설정에 다음 내용을 추가한다.
     securityContext:
         privileged: true

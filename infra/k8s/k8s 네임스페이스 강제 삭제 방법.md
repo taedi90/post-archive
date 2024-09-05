@@ -12,7 +12,7 @@ completed:
 ---
 ## 요약
 
-```Bash
+```bash
 namespace=<Hang 걸린 네임스페이스>; kubectl get namespace $namespace -o json | jq '.spec.finalizers= []' | kubectl replace --raw "/api/v1/namespaces/$namespace/finalize" -f -
 ```
 
@@ -32,7 +32,7 @@ namespace=<Hang 걸린 네임스페이스>; kubectl get namespace $namespace -o 
 
   
 
-```Bash
+```bash
 namespace=longhorn; kubectl get namespace $namespace -o json | jq '.spec.finalizers= []' | kubectl replace --raw "/api/v1/namespaces/$namespace/finalize" -f -
 ```
 

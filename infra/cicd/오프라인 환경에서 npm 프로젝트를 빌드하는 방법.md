@@ -46,7 +46,7 @@ yarn install 을 실행하면 글로벌 cache 경로에 패키지 파일들이 �
 
   
 
-```Bash
+```bash
 yarn config set cache-folder <설정할 폴더 경로>
 yarn install
 ```
@@ -63,7 +63,7 @@ offilne-mirror 를 설정하면 yarn install 시점에 패키지들의 tar 파�
 
   
 
-```Bash
+```bash
 #!/bin/bash
 
 echo "Start Script!"
@@ -106,7 +106,7 @@ echo "Done!"
 
   
 
-```YAML
+```yaml
 yarn-offline-mirror "<패키지 파일 경로>"
 yarn-offline-mirror-pruning true
 ```
@@ -117,7 +117,7 @@ yarn-offline-mirror-pruning true
 
   
 
-```YAML
+```yaml
 script:
 
 ...

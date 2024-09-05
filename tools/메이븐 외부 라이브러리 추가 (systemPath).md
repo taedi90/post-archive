@@ -20,7 +20,7 @@ completed:
 
 dependencies 에 의존성 추가
 
-```Bash
+```bash
 <dependency>
 	<groupId>groupId</groupId>
 	<artifactId>artifactId</artifactId>
@@ -34,7 +34,7 @@ dependencies 에 의존성 추가
 
 runtime 에 NoClassDefFoundError 를 만나지 않기위해 plugins 에 다음 코드를 추가한다.
 
-```Bash
+```bash
 <plugin>
 	<groupId>org.springframework.boot</groupId>
 	<artifactId>spring-boot-maven-plugin</artifactId>
