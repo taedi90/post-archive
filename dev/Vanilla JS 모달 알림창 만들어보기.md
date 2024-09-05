@@ -26,7 +26,7 @@ completed:
 
 # 코드
 
-javascript
+```JavaScript
 'use strict';
 
 /**

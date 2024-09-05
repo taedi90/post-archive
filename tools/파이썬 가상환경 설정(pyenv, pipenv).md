@@ -45,7 +45,7 @@ pipenv는 pyenv가 설치되어 있다면 가상환경에 패키지 뿐만아니
 
 homebrew 환경에서는 아래 명령어로 설치가 가능하다.
 
-bash
+```Bash
 $ brew install pyenv
 ```
 
@@ -53,7 +53,7 @@ $ brew install pyenv
 
 pyenv를 설치하면 아래 명령어들로 간단하게 설치 가능한 파이썬 버전을 확인하고 설치할 수 있다.
 
-bash
+```Bash
 # 설치 가능 리스트 확인
 $ pyenv install -l
 # 3.7.3 버전 설치
@@ -84,7 +84,7 @@ $ pyenv install 3.7.7
 
   
 
-bash
+```Bash
 $ brew reinstall zlib bzip2
 ```
 
@@ -96,7 +96,7 @@ $ brew reinstall zlib bzip2
 
   
 
-bash
+```Bash
 export PATH="$HOME/.pyenv/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 
@@ -112,7 +112,7 @@ export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
 
   
 
-bash
+```Bash
  CFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix bzip2)/include -I$(brew --prefix readline)/include -I$(xcrun --show-sdk-path)/usr/include" LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix readline)/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" pyenv install --patch 3.6.0 < <(curl -sSL https://github.com/python/cpython/commit/8ea6353.patch\?full_index\=1)
 ```
 
@@ -122,7 +122,7 @@ bash
 
 이렇게 해도 안된다면 xcode CommandLineTools를 다시 설치하고 위를 반복한다.
 
-bash
+```Bash
 $ sudo rm -rf /Library/Developer/CommandLineTools
 $ xcode-select --install
 ```
@@ -133,7 +133,7 @@ $ xcode-select --install
 
 pyenv 로 설치한 파이썬 버전들은 다음 명령어로 확인할 수 있다.
 
-bash
+```Bash
 $ pyenv versions
 * system (set by /Users/taedi/.pyenv/version)
   3.6.13
@@ -147,7 +147,7 @@ $ pyenv versions
 
 다른 기능들은 `pyenv -h` 나 깃헙에서 확인이 가능하다.
 
-bash
+```Bash
 Usage: pyenv <command> [<args>]
 
 Some useful pyenv commands are:
@@ -188,13 +188,13 @@ pipenv의 사용 방법은 아래에서 상세하게 다룰거라 간단하게 �
 
 ### 👉 설치하기
 
-bash
+```Bash
 $ brew install pipenv
 ```
 
 ### 👉 명령어
 
-bash
+```Bash
 # 파이썬 버전 지정
 $ pipenv --python 3.7.3
 
@@ -224,7 +224,7 @@ $ pipenv graph
 
 더 자세한 내용은 `pipenv -h` 를 확인해보자.
 
-bash
+```Bash
 Usage: pipenv [OPTIONS] COMMAND [ARGS]...
 
 Options:
@@ -312,13 +312,13 @@ Commands:
 
 기존에 설치되어 있다면 추가로 설치해줄 필요는 없다.
 
-bash
+```Bash
 $ pyenv install 3.7.3
 ```
 
 ### 2. pipenv로 python 버전 선언
 
-bash
+```Bash
 $ pipenv --python 3.7.3
 ```
 
@@ -326,7 +326,7 @@ $ pipenv --python 3.7.3
 
 프로젝트에 필요한 패키지들을 설치해준다.
 
-bash
+```Bash
 $ pipenv install pyqt5
 ```
 
@@ -336,7 +336,7 @@ $ pipenv install pyqt5
 
 `install` 은 Pipfile 에 기록된 의존성을 토대로 패키지들을 설치하고 그걸 토대로 _Pipfile.lock를 업데이트_ 해버린다고 한다. `sync` 는 Pipfile.lock 에 지정된 패키지 버전을 그대로 설치하는 것이라 실제 작업 환경과 동일하게 매칭시켜 줄 수 있어 선호된다고 한다. (간단히 말해서 install 은 호환버전 설치, sync는 완전 일치 같은 느낌이려나..)
 
-bash
+```Bash
 $ pipenv sync
 $ pipenv install
 ```
@@ -353,7 +353,7 @@ Pipfile.lock 파일은`install`, `uninstall`, 명령어를 사용할 때 자동�
 
 기본적으로 가상환경 경로는 /Users/{사용자명}/.local/share/virtualenvs/{프로젝트명}-{난수번호}/ 에 위치한다.
 
-bash
+```Bash
 $ pipenv --venv
 /Users/taedi/.local/share/virtualenvs/test-XBItUTrH
 ```
@@ -364,7 +364,7 @@ $ pipenv --venv
 
   
 
-bash
+```Bash
 # 프로젝트 디렉토리에 .venv 폴더 생성
 $ mkdir .venv
 ```
@@ -375,7 +375,7 @@ $ mkdir .venv
 
   
 
-bash
+```Bash
 $ pipenv --python 3.7.3
 $ pipenv --venv              
 /Users/taedi/workspace_python/test/.venv
@@ -387,7 +387,7 @@ $ pipenv --venv
 
   
 
-json
+```JSON
 "python.venvPath": "${workspaceFolder}/.venv/bin/python",
 "python.pythonPath": ".venv/bin/python"
 ```
@@ -398,7 +398,7 @@ json
 
 다음 명령어로 가상환경 shell 을 실행하고 종료할 수 있다.
 
-bash
+```Bash
 $ pipenv shell
 $ exit
 ```
@@ -409,7 +409,7 @@ $ exit
 
 또는 shell 실행 없이 바로 프로젝트 파일을 실행할 수도 있다.
 
-bash
+```Bash
 $ pipenv run python
 $ pipenv run python test.py
 ```
@@ -420,7 +420,7 @@ $ pipenv run python test.py
 
 다음 명령어로 가상환경의 의존성 그래프를 확인할 수 있다.
 
-bash
+```Bash
 $ pipenv graph
 ```
 
@@ -428,7 +428,7 @@ $ pipenv graph
 
 가상환경이 설치된 경로는 아래 명령어를 통해서 확인이 가능하다.
 
-bash
+```Bash
 $ pipenv --venv
 /Users/taedi/.local/share/virtualenvs/test-XBItUTrH
 $ pipenv --py  
@@ -439,7 +439,7 @@ $ pipenv --py
 
 가상환경이 더이상 필요하지 않거나 어딘가에서 Pipfile 파일을 받아왔는데 충돌이 일어난다면 아래 명령어로 기존의 가상환경을 지울 수 있다.
 
-bash
+```Bash
 $ pipenv —rm
 ```
 
@@ -470,7 +470,7 @@ $ pipenv —rm
 
 설치 된 패키지는 아래 명령어로 확인할 수 있다.
 
-bash
+```Bash
 pip list
 ```
 
@@ -482,7 +482,7 @@ pip list
 
   
 
-bash
+```Bash
 $ pip freeze > requirements.txt
 $ pip uninstall -r requirements.txt -y
 ```
@@ -493,7 +493,7 @@ $ pip uninstall -r requirements.txt -y
 
   
 
-bash
+```Bash
 $ pip install -r requirements.txt
 ```
 
@@ -509,7 +509,7 @@ $ pip install -r requirements.txt
 
   
 
-bash
+```Bash
 # python3 to python
 alias pip="pip3"
 alias python="python3"

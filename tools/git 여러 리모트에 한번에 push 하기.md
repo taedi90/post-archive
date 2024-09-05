@@ -13,7 +13,7 @@ completed:
 ---
 ## 요약
 
-bash
+```Bash
 ## 설정
 remote_1=example.com/project.git
 remote_2=example2.com/project.git
@@ -38,7 +38,7 @@ git 을 사용하다보니 리모트 저장소를 여러개 두는 경우가 발
 
 ‘all’ 이라는 remote 를 등록하고 `set-url --add` 로 여러개의 리모트를 등록하는 방법을 찾게 되었다.
 
-bash
+```Bash
 ## 리모트 저장소 리스트 (https of ssh 경로)
 remote_1=example.com/project.git # 메인 저장소 (fetch 도 포함)
 remote_2=example2.com/project.git
@@ -55,7 +55,7 @@ git remote set-url --add all "${remote_3}"
 
   
 
-bash
+```Bash
 $ git remote -v
 all	example.com/project.git (fetch)
 all	example.com/project.git (push)
@@ -72,7 +72,7 @@ all	example3.com/project.git (push)
 
 이 설정은 `.git/config` 파일에서 직접 수정도 가능하다.
 
-bash
+```Bash
 ...
 [remote "all"]
 	url = example.com/project.git

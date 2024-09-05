@@ -20,7 +20,7 @@ completed:
 
 gitlab container registry 를 이용해 private registry 를 구성하는 중, “UNAUTHORIZED” 에러를 마주하게 되었다.
 
-bash
+```Bash
 $ curl --insecure https://<registry-host>/v2/_catalog
 {"errors":[{"code":"UNAUTHORIZED","message":"authentication required","detail":[{"Type":"registry","Class":"","Name":"catalog","Action":"*"}]}]}
 ```
@@ -29,7 +29,7 @@ $ curl --insecure https://<registry-host>/v2/_catalog
 
 정상적인 방법으론 Bearer Token 을 발급 받아서 활용하는 방법이 있다.
 
-bash
+```Bash
 $ curl --user <user>:<private-token> "https://<gitlab-host>/jwt/auth?service=container_registry&scope=repository:group/project:push,pull" | jq '.token'
 ```
 
@@ -37,7 +37,7 @@ $ curl --user <user>:<private-token> "https://<gitlab-host>/jwt/auth?service=con
 
 하지만 내부에서만 사용할 레지스트리라 gitlab-registry configmap 내부의 auth 부분을 주석처리해서 인증 자체를 disable 해버렸다.
 
-bash
+```Bash
 ####################################################
 # gitlab-registry configmap 의 아래 내용을 주석처리한다.
 ####################################################

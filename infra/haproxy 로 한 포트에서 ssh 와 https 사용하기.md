@@ -15,7 +15,7 @@ completed:
 
 - haproxy.cfg 파일
 
-bash
+```Bash
 global
   <설정>
 
@@ -62,7 +62,7 @@ backend https
 
 `haproxy.cfg` 파일에 다음과 같은 내용을 추가했다. “<>” 표시 된 부분은 추가적인 입력이 필요한 부분
 
-bash
+```Bash
 global
   # log 설정
   log stdout format raw local0

@@ -20,7 +20,7 @@ completed:
 
 ## 해결
 
-bash
+```Bash
 # 루트 "/" 경로에서 "haproxy" 사용자 소유의 디렉토리 검색
 find / -user haproxy -type d
 

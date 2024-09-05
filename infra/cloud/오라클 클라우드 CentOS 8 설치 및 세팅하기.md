@@ -70,7 +70,7 @@ Subnet > Security Lists > Ingress Rules > Add Ingress rules 에서 22 포트(htt
 
 맥에서는 터미널에서 ssh 접속이 가능하다.(윈도우는 ssh 클라이언트 프로그램 다운로드 필요) 아까 다운받은 ssh-key가 위치한 디렉토리로 이동해서 ssh 접속을 시도한다.
 
-bash
+```Bash
 # ssh-key가 저장 된 경로로 이동
 cd oracle_cloud
 # ssh 접속 시도
@@ -81,7 +81,7 @@ ssh -i ssh-key.key 아이디@공인아이피
 
 혹시나 권한문제로 오류가 발생한다면 디렉토리와 ssh-key 권한을 수정하고 다시 시도해준다.
 
-bash
+```Bash
 # ssh-key 디렉토리
 chmod 0700 oracle_cloud
 
@@ -95,7 +95,7 @@ chmod 0400 ssh-key.key
 
 ssh 접속이 완료되었다면 루트 및 유저 비밀번호를 설정해준다.
 
-bash
+```Bash
 # 루트
 sudo passwd root
 
@@ -109,7 +109,7 @@ sudo passwd opc
 
 이후 ssh-key 없이 비밀번호를 이용한 접속을 위해서는 sshd_config 파일 수정이 필요하다.
 
-bash
+```Bash
 # /etc/ssh 디렉토리 진입
 cd /etc/ssh
 
@@ -129,7 +129,7 @@ sudo nano sshd_config
 
 이후 sshd를 재실행 해준다.
 
-bash
+```Bash
 sudo service sshd reload
 ```
 
@@ -141,7 +141,7 @@ sudo service sshd reload
 
   
 
-bash
+```Bash
 # 중지
 sudo systemctl stop iptables
 sudo systemctl stop ip6tables
@@ -171,7 +171,7 @@ CentOS 를 설치하면서 패키지 관리자가 yum(dnf), rpm, deb, apt-get, d
 
   
 
-bash
+```Bash
 sudo yum update
 
 sudo yum upgrade
@@ -183,7 +183,7 @@ sudo yum upgrade
 
 설치 초기에는 시간대가 GMT 기준이기 때문에 로그에 시간이 이상하게 나온다. 타임존을 GMT +9 로 변경해준다.
 
-bash
+```Bash
 # 타임존 설정
 sudo timedatectl set-timezone Asia/Seoul
 # 설정 확인
@@ -194,7 +194,7 @@ timedatectl
 
 .bashrc 파일을 수정하면 bash 에서 한글이 깨지지 않고 정상적으로 입력된다.
 
-bash
+```Bash
 vi ~/.bashrc
 # 아래 내용을 하단에 삽입
 LANG=ko_KR
@@ -251,7 +251,7 @@ rsync 외의 권한을 최소화 하기위해서 전용 계정을 만들어 주�
 
 OCI 서버에 ssh 접속을 하여 ssh-key를 생성해준다.
 
-bash
+```Bash
 [root@centos8 ~]# ssh-keygen -t rsa
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa):
@@ -279,7 +279,7 @@ The key's randomart image is:
 
 그리고 아래 명령어로 ssh-key의 내용을 시놀로지 서버의 authorized_keys에 추가하여 준다.
 
-bash
+```Bash
 [root@centos8 ~]# cat ~/.ssh/id_rsa.pub | ssh -p 포트번호 rsync@시놀로지주소 "cat >> .ssh/authorized_keys"
 ```
 
@@ -289,7 +289,7 @@ bash
 
 이후에 시놀로지 서버에 ssh 접속을 하여 다음처럼 접근 권한을 변경해준다. (권한설정에 따라 파일이 존재함에도 불구하고 접속시에 비밀번호를 요구할 수 있다.)
 
-bash
+```Bash
 rsync@Taedi_NAS:~$ sudo chmod 755 /var/services/homes/rsync
 rsync@Taedi_NAS:~$ sudo chmod 700 /var/services/homes/rsync/.ssh
 rsync@Taedi_NAS:~$ sudo chmod 600 /var/services/homes/rsync/.ssh/authorized_keys
@@ -299,12 +299,12 @@ rsync@Taedi_NAS:~$ sudo chmod 600 /var/services/homes/rsync/.ssh/authorized_keys
 
 그리고 sshd_config 파일을 수정하여 인증키로 로그인이 가능하도록 설정을 수정해준다.
 
-bash
+```Bash
 # sshd_config 편집 진입
 sudo vi /etc/ssh/sshd_config
 ```
 
-bash
+```Bash
 # 수정할 내용
 PubkeyAuthentication yes
 AuthorizedKeysFile  .ssh/authorized_keys
@@ -312,7 +312,7 @@ AuthorizedKeysFile  .ssh/authorized_keys
 
 그리고 sshd 재시작하면 된다.
 
-bash
+```Bash
 # sshd_config 재시작
 sudo synoservicectl --restart sshd
 ```
@@ -325,7 +325,7 @@ sudo synoservicectl --restart sshd
 
 CentOS 서버 ssh 에서 다음 명령어를 사용했을 때 비밀번호 입력없이 백업이 시작된다면 설정이 완료 된 것이다. (본인은 이후 시놀로지 ssh 활성화 해제 및 rsync 아이디에 관리자 권한 해제 후에도 정상적으로 동작했음)
 
-bash
+```Bash
 # CentOS '/'폴더 하위의 내용을 시놀로지 'NetBackup/backup/'경로에 복사
 rsync -av -e 'ssh -p 시놀로지_포트' / 아이디@시놀로지_주소::NetBackup/backup/
 ```
@@ -338,14 +338,14 @@ rsync -av -e 'ssh -p 시놀로지_포트' / 아이디@시놀로지_주소::NetBa
 
 크론탭을 설정하면 윈도우 작업스케줄러 처럼 특정 시간마다 반복적으로 업무를 지시할 수 있다.
 
-bash
+```Bash
 # 크론탭 편집
 crontab -e
 ```
 
 크론탭에 방금전 테스트 했던 명령어를 매일 7시에 실행할 수 있도록 설정해주었다. (vi 에디터 수정모드는 insert키, 저장은 :wq, 저장없이 나가려면 :qa!)
 
-bash
+```Bash
 * 7 * * * rsync -av -e 'ssh -p 시놀로지_포트' / 아이디@시놀로지_주소::NetBackup/backup/
 ```
 

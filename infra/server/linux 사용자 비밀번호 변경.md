@@ -10,7 +10,7 @@ permalink:
 aliases: 
 completed:
 ---
-bash
+```Bash
 $ passwd
 Changing password for [USER].
 Current password:
@@ -23,6 +23,6 @@ passwd: password updated successfully
 
 쉘 스크립트 등 패스워드 입력이 불가한 경우
 
-bash
+```Bash
 $ echo "[USER]:[PASSWORD]" | sudo chpasswd
 ```

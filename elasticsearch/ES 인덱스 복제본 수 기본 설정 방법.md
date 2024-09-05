@@ -30,7 +30,7 @@ completed:
 
   
 
-json
+```JSON
 PUT _template/all 
 {
 	"index_patterns": "*",

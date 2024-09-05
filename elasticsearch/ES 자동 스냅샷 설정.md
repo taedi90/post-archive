@@ -31,7 +31,7 @@ completed:
 
   
 
-yaml
+```YAML
 # bitnami 차트는 이 키값을 변경한다.
 snapshotRepoPath: "<스냅샷 데이터를 저장할 PV마운트 경로>"
 ```
@@ -42,7 +42,7 @@ snapshotRepoPath: "<스냅샷 데이터를 저장할 PV마운트 경로>"
 
   
 
-bash
+```Bash
 # 리포지토리 등록
 PUT _snapshot/backup
 {
