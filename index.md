@@ -3,6 +3,8 @@ title: 환영합니다!
 draft: false
 tags:
 ---
+[태그](/tags/)
+
 ### 🙋🏻About Me
 
 취미로 시작한 코딩에 빠져 직업까지 바꿔버린 주니어 코더입니다!  
