@@ -32,7 +32,7 @@ tags:
 | 2023.06 | 2024.04 | B 고객사<br>챗봇 서비스 2차 사업  | - 운영서버 삼중화<br>- L4(파이오링크) 설정<br>- docker swarm                       |
 | 2024.04 |         | C 고객사<br>평가 솔루션 자동화 사업 | - 인프라<br>- 백엔드 개발                                                    |
 | 2024.08 |         | B 고객사<br>챗봇 서비스 3차 사업  |                                                                      |
-### Sta
+### Stack
 ![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=for-the-badge&logo=kubernetes&logoColor=white)
 
 ### 📞Contact
