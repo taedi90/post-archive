@@ -1,6 +1,6 @@
 ---
 title: "intellij \bshortcut"
-draft: false
+draft: true
 tags:
   - test
 ---
