@@ -1,7 +1,7 @@
 .DS_Store 
-#obsidian/workspace.json
 .obsidian/workspace.json
-#obsidian/workspace-mobile.json
 .obsidian/workspace-mobile.json
+
+#make-md
 .obsidian/plugins/make-md/Spaces.mdb
 context.mdb
