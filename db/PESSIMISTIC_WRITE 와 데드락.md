@@ -10,3 +10,15 @@ permalink:
 aliases:
 completed:
 ---
+## 📝 요약
+> [!summary]
+> 
+
+## ⚙️ 환경
+- mariadb 
+## 💬 이슈
+
+## 🧗 해결
+
+## 🚀 참고
+- [참고링크](https://link)
