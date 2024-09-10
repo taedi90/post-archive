@@ -29,7 +29,12 @@ completed:
 ## 🧗 해결
 ### 원인 파악
 우선 `SHOW ENGINE INNODB STATUS` 를 통해 deadlock 이 발생한 직후 `LATEST DETECTED DEADLOCK` 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생하는 문제로 로그를 확보하기가 어려웠다.  
-
+그래서 mysql 설정에 다음 항목을 추가하고 
+```config
+[mysqld]
+# 모든 데드락 로그를 저장
+innodb_print_all_deadlocks = 1
+```
 
 
 ```sql
