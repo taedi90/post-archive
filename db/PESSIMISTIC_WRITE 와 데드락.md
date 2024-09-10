@@ -17,9 +17,11 @@ completed:
 ## ⚙️ 환경
 - mariadb 10.8.3
 ## 💬 이슈
-사내 솔루션 내부에 비관적락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 경우가 생겼다.
+사내 솔루션의 비관적락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 확인되었다.  
 
-
+이슈를 파헤치다 보니 몇가지 의문이 발생했다.  
+- `innodb_lock_wait_timeout` 에 설정된 50초 보다 터무니 없이 짧은 시간인 1초 내외로 deadlock 예외가 발생한다는 점
+- 
 
 
 ## 🧗 해결
