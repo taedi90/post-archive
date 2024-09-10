@@ -53,7 +53,7 @@ LOCK WAIT 5 lock struct(s), heap size 1128, 3 row lock(s), undo log entries 2
 
 MariaDB thread id 2195, OS thread handle 139620720838400, query id 43213 172.18.0.8 root Sending data
 
-select agentmulti0_.multi_id as multi_id1_119_, agentmulti0_.acwclose_time as acwclose2_119_, agentmulti0_.agent_id as agent_id3_119_, agentmulti0_.agent_multistatus as agent_mu4_119_, agentmulti0_.assign_time as assign_t5_119_, agentmulti0_.channel_id as channel_6_119_, agentmulti0_.chatclose_time as chatclos7_119_, agentmulti0_.chatstart_time as chatstar8_119_, agentmulti0_.db_update_time as db_updat9_119_, agentmulti0_.nexthop as nexthop10_119_, agentmulti0_.passive_yn as passive11_119_, agentmulti0_.routing_type as routing12_119_, agentmulti0_.status_time as status_13_119_, agentmulti0_.ucid as ucid14_119_ from dv_datamart.tb_rm_agent_multistatus agentmulti0_ where agentmulti0_.agent_id=134 for update
+select ... from dv_datamart.tb_rm_agent_multistatus agentmulti0_ where agentmulti0_.agent_id=134 for update
 
 2024-09-10 12:38:06 2195 [Note] InnoDB: *** WAITING FOR THIS LOCK TO BE GRANTED:
 
