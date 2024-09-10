@@ -17,7 +17,8 @@ completed:
 ## ⚙️ 환경
 - mariadb 10.8.3
 ## 💬 이슈
-사내 솔루션 내부에 비관적락(PESSIMISTIC_WRITE) 을 사용하는 로직에 간헐적으로 deadlock 이 발생하는 경우가 생겼다.
+사내 솔루션 내부에 비관적락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 경우가 생겼다.
+
 
 
 
