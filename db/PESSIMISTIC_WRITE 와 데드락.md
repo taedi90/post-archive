@@ -29,11 +29,254 @@ completed:
 ## 🧗 해결
 ### 원인 파악
 우선 `SHOW ENGINE INNODB STATUS` 를 통해 deadlock 이 발생한 직후 `LATEST DETECTED DEADLOCK` 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생하는 문제로 로그를 확보하기가 어려웠다.  
-그래서 mysql 설정에 다음 항목을 추가하고 
 ```config
 [mysqld]
 # 모든 데드락 로그를 저장
 innodb_print_all_deadlocks = 1
+```
+그래서 mysql 설정에 다음 항목을 추가하고 재기동해주고나서 mysql_error.log 로그에서 deadlock 을 확인할 수 있었다.
+
+```
+2024-09-10 12:38:06 2195 [Note] InnoDB: Transactions deadlock detected, dumping detailed information.
+
+2024-09-10 12:38:06 2195 [Note] InnoDB:
+
+*** (1) TRANSACTION:
+
+  
+
+TRANSACTION 7994580, ACTIVE 0 sec fetching rows
+
+mysql tables in use 1, locked 1
+
+LOCK WAIT 5 lock struct(s), heap size 1128, 3 row lock(s), undo log entries 2
+
+MariaDB thread id 2195, OS thread handle 139620720838400, query id 43213 172.18.0.8 root Sending data
+
+select agentmulti0_.multi_id as multi_id1_119_, agentmulti0_.acwclose_time as acwclose2_119_, agentmulti0_.agent_id as agent_id3_119_, agentmulti0_.agent_multistatus as agent_mu4_119_, agentmulti0_.assign_time as assign_t5_119_, agentmulti0_.channel_id as channel_6_119_, agentmulti0_.chatclose_time as chatclos7_119_, agentmulti0_.chatstart_time as chatstar8_119_, agentmulti0_.db_update_time as db_updat9_119_, agentmulti0_.nexthop as nexthop10_119_, agentmulti0_.passive_yn as passive11_119_, agentmulti0_.routing_type as routing12_119_, agentmulti0_.status_time as status_13_119_, agentmulti0_.ucid as ucid14_119_ from dv_datamart.tb_rm_agent_multistatus agentmulti0_ where agentmulti0_.agent_id=134 for update
+
+2024-09-10 12:38:06 2195 [Note] InnoDB: *** WAITING FOR THIS LOCK TO BE GRANTED:
+
+  
+
+RECORD LOCKS space id 288 page no 3 n bits 112 index PRIMARY of table `dv_datamart`.`tb_rm_agent_multistatus` trx id 7994580 lock_mode X locks rec but not gap waiting
+
+Record lock, heap no 105 PHYSICAL RECORD: n_fields 16; compact format; info bits 0
+
+0: len 8; hex 80000000000000e2; asc ;;
+
+1: len 6; hex 00000079fcd3; asc y ;;
+
+2: len 7; hex 5f0000400c1155; asc _ @ U;;
+
+3: len 8; hex 800000000000004a; asc J;;
+
+4: len 8; hex 8000000000000008; asc ;;
+
+5: len 30; hex 65313833336261322d326663372d343539612d623265332d363634393435; asc e1833ba2-2fc7-459a-b2e3-664945; (total 36 bytes);
+
+6: len 2; hex 8046; asc F;;
+
+7: len 8; hex 99b45439860a77b0; asc T9 w ;;
+
+8: len 8; hex 99b454391608c230; asc T9 0;;
+
+9: len 8; hex 99b454391b05a938; asc T9 8;;
+
+10: len 8; hex 99b45439860a77b0; asc T9 w ;;
+
+11: SQL NULL;
+
+12: len 2; hex 8014; asc ;;
+
+13: len 1; hex 80; asc ;;
+
+14: len 8; hex 99b45439860a77b0; asc T9 w ;;
+
+15: len 2; hex 8004; asc ;;
+
+  
+
+2024-09-10 12:38:06 2195 [Note] InnoDB: *** CONFLICTING WITH:
+
+  
+
+RECORD LOCKS space id 288 page no 3 n bits 112 index PRIMARY of table `dv_datamart`.`tb_rm_agent_multistatus` trx id 7994579 lock_mode X locks rec but not gap
+
+Record lock, heap no 83 PHYSICAL RECORD: n_fields 16; compact format; info bits 0
+
+0: len 8; hex 80000000000000fd; asc ;;
+
+1: len 6; hex 000000000000; asc ;;
+
+2: len 7; hex 80000000000000; asc ;;
+
+3: len 8; hex 800000000000004a; asc J;;
+
+4: SQL NULL;
+
+5: SQL NULL;
+
+6: len 2; hex 8014; asc ;;
+
+7: len 8; hex 99b45436e70c38e8; asc T6 8 ;;
+
+8: SQL NULL;
+
+9: SQL NULL;
+
+10: SQL NULL;
+
+11: SQL NULL;
+
+12: SQL NULL;
+
+13: SQL NULL;
+
+14: len 8; hex 99b45436e70c38e8; asc T6 8 ;;
+
+15: SQL NULL;
+
+  
+
+Record lock, heap no 105 PHYSICAL RECORD: n_fields 16; compact format; info bits 0
+
+0: len 8; hex 80000000000000e2; asc ;;
+
+1: len 6; hex 00000079fcd3; asc y ;;
+
+2: len 7; hex 5f0000400c1155; asc _ @ U;;
+
+3: len 8; hex 800000000000004a; asc J;;
+
+4: len 8; hex 8000000000000008; asc ;;
+
+5: len 30; hex 65313833336261322d326663372d343539612d623265332d363634393435; asc e1833ba2-2fc7-459a-b2e3-664945; (total 36 bytes);
+
+6: len 2; hex 8046; asc F;;
+
+7: len 8; hex 99b45439860a77b0; asc T9 w ;;
+
+8: len 8; hex 99b454391608c230; asc T9 0;;
+
+9: len 8; hex 99b454391b05a938; asc T9 8;;
+
+10: len 8; hex 99b45439860a77b0; asc T9 w ;;
+
+11: SQL NULL;
+
+12: len 2; hex 8014; asc ;;
+
+13: len 1; hex 80; asc ;;
+
+14: len 8; hex 99b45439860a77b0; asc T9 w ;;
+
+15: len 2; hex 8004; asc ;;
+
+  
+
+2024-09-10 12:38:06 2195 [Note] InnoDB:
+
+*** (2) TRANSACTION:
+
+  
+
+TRANSACTION 7994579, ACTIVE 0 sec fetching rows
+
+mysql tables in use 1, locked 1
+
+LOCK WAIT 5 lock struct(s), heap size 1128, 4 row lock(s), undo log entries 2
+
+MariaDB thread id 2194, OS thread handle 139620691040000, query id 43212 172.18.0.8 root Sending data
+
+select agentmulti0_.multi_id as multi_id1_119_, agentmulti0_.acwclose_time as acwclose2_119_, agentmulti0_.agent_id as agent_id3_119_, agentmulti0_.agent_multistatus as agent_mu4_119_, agentmulti0_.assign_time as assign_t5_119_, agentmulti0_.channel_id as channel_6_119_, agentmulti0_.chatclose_time as chatclos7_119_, agentmulti0_.chatstart_time as chatstar8_119_, agentmulti0_.db_update_time as db_updat9_119_, agentmulti0_.nexthop as nexthop10_119_, agentmulti0_.passive_yn as passive11_119_, agentmulti0_.routing_type as routing12_119_, agentmulti0_.status_time as status_13_119_, agentmulti0_.ucid as ucid14_119_ from dv_datamart.tb_rm_agent_multistatus agentmulti0_ where agentmulti0_.agent_id=74 for update
+
+2024-09-10 12:38:06 2195 [Note] InnoDB: *** WAITING FOR THIS LOCK TO BE GRANTED:
+
+  
+
+RECORD LOCKS space id 288 page no 3 n bits 112 index PRIMARY of table `dv_datamart`.`tb_rm_agent_multistatus` trx id 7994579 lock_mode X locks rec but not gap waiting
+
+Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits 0
+
+0: len 8; hex 800000000000004d; asc M;;
+
+1: len 6; hex 00000079fcd4; asc y ;;
+
+2: len 7; hex 600000049a2a40; asc ` *@;;
+
+3: len 8; hex 8000000000000086; asc ;;
+
+4: len 8; hex 8000000000000002; asc ;;
+
+5: len 30; hex 64396534613766392d616338342d343336332d393430622d373338353238; asc d9e4a7f9-ac84-4363-940b-738528; (total 36 bytes);
+
+6: len 2; hex 8046; asc F;;
+
+7: len 8; hex 99b45439860a8b38; asc T9 8;;
+
+8: len 8; hex 99b454391a0979c8; asc T9 y ;;
+
+9: len 8; hex 99b454391e0a5870; asc T9 Xp;;
+
+10: len 8; hex 99b45439860a8b38; asc T9 8;;
+
+11: SQL NULL;
+
+12: len 2; hex 8014; asc ;;
+
+13: len 1; hex 80; asc ;;
+
+14: len 8; hex 99b45439860a8b38; asc T9 8;;
+
+15: len 2; hex 8005; asc ;;
+
+  
+
+2024-09-10 12:38:06 2195 [Note] InnoDB: *** CONFLICTING WITH:
+
+  
+
+RECORD LOCKS space id 288 page no 3 n bits 112 index PRIMARY of table `dv_datamart`.`tb_rm_agent_multistatus` trx id 7994580 lock_mode X locks rec but not gap
+
+Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits 0
+
+0: len 8; hex 800000000000004d; asc M;;
+
+1: len 6; hex 00000079fcd4; asc y ;;
+
+2: len 7; hex 600000049a2a40; asc ` *@;;
+
+3: len 8; hex 8000000000000086; asc ;;
+
+4: len 8; hex 8000000000000002; asc ;;
+
+5: len 30; hex 64396534613766392d616338342d343336332d393430622d373338353238; asc d9e4a7f9-ac84-4363-940b-738528; (total 36 bytes);
+
+6: len 2; hex 8046; asc F;;
+
+7: len 8; hex 99b45439860a8b38; asc T9 8;;
+
+8: len 8; hex 99b454391a0979c8; asc T9 y ;;
+
+9: len 8; hex 99b454391e0a5870; asc T9 Xp;;
+
+10: len 8; hex 99b45439860a8b38; asc T9 8;;
+
+11: SQL NULL;
+
+12: len 2; hex 8014; asc ;;
+
+13: len 1; hex 80; asc ;;
+
+14: len 8; hex 99b45439860a8b38; asc T9 8;;
+
+15: len 2; hex 8005; asc ;;
+
+  
+
+2024-09-10 12:38:06 2195 [Note] InnoDB: *** WE ROLL BACK TRANSACTION (0)
+
 ```
 
 
