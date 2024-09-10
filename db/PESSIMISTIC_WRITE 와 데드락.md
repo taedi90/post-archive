@@ -23,6 +23,8 @@ completed:
 - `innodb_lock_wait_timeout` 에 설정된 50초 보다 터무니 없이 짧은 시간인 1초 내외로 deadlock 예외가 발생한다는 점
 - PessimisticLockException 이 아닌 OptimisticLockException 예외가 발생한다는 점
 
+내부 로직이 복잡하기 때문에 
+
 
 ## 🧗 해결
 
