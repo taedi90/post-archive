@@ -12,10 +12,8 @@ completed:
 ---
 ## 📝 요약
 > [!summary]
-> REPEATABLE READ 격리 수준에서
-> 비 유니크 인덱스 조건으로 PESSIMISTIC_WRITE 을 사용하면
-> record lock 뿐만아니라 gap lock 까지 innodb 에서 수행할 수 있다.
-> 따라서 비 유니크 인덱스 조건을 `PK in ( , )` 조건으로 변경한다
+> **REPEATABLE READ** 격리 수준에서는 비유니크 인덱스를 조건으로 **PESSIMISTIC_WRITE**를 사용하면 InnoDB에서 **레코드 락(Record Lock)**뿐만 아니라 **갭 락(Gap Lock)**도 수행될 수 있으며, 이러한 갭 락은 의도치 않은 데드락을 유발할 수 있다.
+> 따라서 비유니크 인덱스 조건을 피하기 위해 **`PK IN ( , )`**와 같이 기본 키(PK)를 이용한 조건으로 변경하여 갭 락 문제를 해결할 수 있다.
 
 ## ⚙️ 환경
 - mariadb 10.8.3
