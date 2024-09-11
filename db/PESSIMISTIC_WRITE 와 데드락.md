@@ -12,7 +12,10 @@ completed:
 ---
 ## 📝 요약
 > [!summary]
-> 
+> REPEATABLE READ 격리 수준에서
+> 비 유니크 인덱스 조건으로 PESSIMISTIC_WRITE 을 사용하면
+> record lock 뿐만아니라 gap lock 까지 innodb 에서 수행할 수 있다.
+> 따라서 비 유니크 인덱스 조건을 `PK in ( , )` 조건으로 변경한다
 
 ## ⚙️ 환경
 - mariadb 10.8.3
