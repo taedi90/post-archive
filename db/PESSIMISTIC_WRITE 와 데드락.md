@@ -143,7 +143,17 @@ MariaDB [(none)]> show variables like '%isolation%';
 격리수준이나 낙관적락으로 로직을 변경해도 될까?
 
 
-
+데드락 발생 시나리오
+```sql
+[transaction 1]> START TRANSACTION;
+[transaction 1]> SELECT * from dv_datamart.tb_rm_agent_multistatus  
+         WHERE agent_id = 74 FOR UPDATE ;
+[transaction 2]> START TRANSACTION;
+[transaction 2]> SELECT * from dv_datamart.tb_rm_agent_multistatus  
+         WHERE agent_id = 134 FOR UPDATE ;
+[transaction 1]> SELECT * from dv_datamart.tb_rm_agent_multistatus  
+         WHERE agent_id = 74 FOR UPDATE ; /* 데드락 발생 */
+```
 ## 🚀 참고
 - [https://mangkyu.tistory.com/299](https://mangkyu.tistory.com/299)
 - [https://medium.com/daangn/mysql-gap-lock-%EB%8B%A4%EC%8B%9C%EB%B3%B4%EA%B8%B0-7f47ea3f68bc](https://medium.com/daangn/mysql-gap-lock-%EB%8B%A4%EC%8B%9C%EB%B3%B4%EA%B8%B0-7f47ea3f68bc)
