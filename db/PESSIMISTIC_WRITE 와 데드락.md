@@ -22,7 +22,7 @@ completed:
 ## ⚙️ 환경
 - mariadb 10.8.3 (InnoDB)
 - Spring boot 2.5.1
-- 
+- JDK 1.8
 
 ## 💬 이슈
 사내 솔루션의 비관적 락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 간 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 발생했다.  
@@ -37,10 +37,10 @@ Caused by: javax.persistence.OptimisticLockException: org.hibernate.exception.Lo
 이런 이유로 로직 상 의도되지 않은(비 일반적인) 문제라 생각하고 내용을 깊게 알아보기로 하였다.  
 
 ## 🧗 해결
-글에서는 불필요한 내용을 최대한 걷어내느라 기록되어 있지는 않지만 실제 비즈니스 로직은 트랜젝션이 작은 단위로 이루어져 있지 않고 다른 테이블에 대한 insert 및 update 도 존재했고, 거기에다 rabbitMQ messageListener 나 redis Rlock 등도 트랜젝션 내 외부에 존재해서 서로 간의 간섭이 있는지도 우려되었다. 
+글에는 불필요한 내용을 제외했지만 실제 비즈니스 로직은 트랜젝션이 작은 단위가 아니었다. 다른 테이블에 대한 insert 및 update 도 존재했고, 거기에다 rabbitMQ messageListener 나 redis Rlock 등도 트랜젝션 내 외부에 존재해서 서로 간의 간섭이 있는지도 우려되는 상황이었다. 하지만 서비스 로그만으로는 원인을 파악하기 어려웠고 좀 더 상세한 분석이 필요했다.  
 
-### 원인 파악
-우선 `SHOW ENGINE INNODB STATUS` 쿼리로 deadlock 이 발생한 직후 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생해서 로그를 확보하기 어려웠다. (가장 최근의 deadlock 한 개만 보여준다.)  
+### MariaDB 로그 확인
+동일한 오류를 발생시켜 `SHOW ENGINE INNODB STATUS` 쿼리로 deadlock 이 발생한 직후 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생해서 로그를 확보하기 어려웠다. (가장 최근의 deadlock 한 개만 보여준다.)  
 
 ```config
 [mysqld]
