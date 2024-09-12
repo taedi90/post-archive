@@ -536,6 +536,7 @@ for update 는 row 단위로 lock 이 발생하는 것 아닌가? > 조건부
 
 ```sql
 MariaDB [(none)]> show variables like '%isolation%';
+MariaDB [(none)]> SELECT @@SESSION.tx_isolation;
 +---------------+-----------------+
 | Variable_name | Value           |
 +---------------+-----------------+
