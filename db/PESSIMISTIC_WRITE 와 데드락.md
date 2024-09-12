@@ -34,14 +34,17 @@ completed:
 
 ## 🧗 해결
 ### 원인 파악
-우선 `SHOW ENGINE INNODB STATUS` 를 통해 deadlock 이 발생한 직후 `LATEST DETECTED DEADLOCK` 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생하는 문제로 로그를 확보하기가 어려웠다.  
+우선 `SHOW ENGINE INNODB STATUS` 쿼리로 deadlock 이 발생한 직후 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생해서 로그를 확보하기 어려웠다. (가장 최근의 deadlock 한 개만 보여준다.)  
+
 ```config
 [mysqld]
 # 모든 데드락 로그를 저장
 innodb_print_all_deadlocks = 1
 ```
 
-그래서 mysql 설정에 다음 항목을 추가하고 재기동해주고나서 mysql_error.log 로그에서 deadlock 을 확인할 수 있었다.
+그래서 mariadb 설정에 다음 항목을 추가하고 재기동하여 이후 발생하는 모든 deadlock 로그를 mysql_error.log 파일에서 확인할 수 있도록 했다.  
+
+이후 확인 된 로그는
 
 <details> <summary>전체 로그</summary>
 <div>
