@@ -598,6 +598,23 @@ MariaDB thread id 83579, OS thread handle 140215382992640, query id 7171893 loca
 
 이 때 테이블 전체가 잠긴다
 
+```
+MariaDB [test]> SELECT * FROM target_table WHERE id IN (1, 5) FOR UPDATE;
++----+------+
+| id | col1 |
++----+------+
+|  1 |   10 |
+|  5 |   50 |
++----+------+
+2 rows in set (0.000 sec)
+```
+
+인덱스로 조회할 때는 2개의 row 만 잠기는 것을 확인할 수 있다.
+
+2 lock struct(s), heap size 1128, 2 row lock(s)
+MariaDB thread id 83579, OS thread handle 140215382992640, query id 7197926 localhost root
+
+
 
 
 ```sql
