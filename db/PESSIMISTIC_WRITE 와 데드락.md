@@ -543,6 +543,11 @@ MariaDB [test]> CREATE TABLE target_table (
     -> );
 ```
 
+```
+MariaDB [test]> INSERT INTO target_table VALUES (1, 10), (2, 20), (3, 30), (4, 20), (5, 50);
+Query OK, 5 rows affected (0.035 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+```
 
 
 
