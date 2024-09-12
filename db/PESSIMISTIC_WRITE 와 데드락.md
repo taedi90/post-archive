@@ -509,17 +509,15 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 </div>
 </details>
 
-로그 내용에서 핵심적인 내용을 추려보면
-트랜젝션 7994579 과 7994580 이 `target_table` 의 서로 다른 검색 조건으로 `for update` 구문으로 락을 발생 시키는데 두 트랜젝션 모두 
-배타적 락으로 record 락은 획득했으나 gap lock 은 얻지 못하는 상황이 발생했고
+로그 내용을 분석해보면
 
 - 트랜젝션 7994579 과 7994580 이 동시에 배타적 락을 요청하고
-- 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 상황이 발생
-- 
+- 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 교착상황이 발생
+- InnoDB 에서 둘 중 하나를 rollback (victim) 
 
-- lock_mode X locks rec but not gap waiting
+임을 파악할 수 있었다.  
 
-lock_mode X locks rec but not gap waiting
+
 
 ```sql
 MariaDB [(none)]> show variables like '%isolation%';
