@@ -23,11 +23,11 @@ completed:
 - mariadb 10.8.3
 
 ## 💬 이슈
-사내 솔루션의 비관적 락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 간 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 확인되었다.  
+사내 솔루션의 비관적 락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 간 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 발생했다.  
 
-로그를 분석하다 보니 의문점이 생겼다.  
-- 일반적인 상황에서는 lock 획득을 하기 위해서 대기를 하는 것이 정상이지만, 문제 상황에서는 lock 획득 시도 후 1초 이내에 오류가 발생했으며, 이는 `innodb_lock_wait_timeout` 에 설정된 50초 보다 터무니 없이 짧은 수준
-- 발생 오류 또한 optimisticLockException 으로 lock 획득 불가시 발생하는 pessimisticLockException 과 stackTrace 가 다름
+오류시점의 서비스 로그를 파악해보니 의문점이 생겼는데  
+- 일반적인 경합에서는 먼저 락을 획득한 트랜젝션이 종료되기 까지 `innodb_lock_wait_timeout` 설정 대로 50초간 대기 후 오류가 발생할 것으로 예상되지만, 문제 상황에서는 lock 획득 시도 후 1초 이내에 데드락 이슈 발생
+- 오류 또한 optimisticLockException 으로 lock 획득 불가 시 발생하는 pessimisticLockException 과 stackTrace 가 달랐음
 
 내부 로직이 복잡하기 때문에 
 
