@@ -40,15 +40,15 @@ Caused by: javax.persistence.OptimisticLockException: org.hibernate.exception.Lo
 글에는 불필요한 내용을 제외했지만 실제 비즈니스 로직은 트랜젝션이 작은 단위가 아니었다. 다른 테이블에 대한 insert 및 update 도 존재했고, 거기에다 rabbitMQ messageListener 나 redis Rlock 등도 트랜젝션 내 외부에 존재해서 서로 간의 간섭이 있는지도 우려되는 상황이었다. 하지만 서비스 로그만으로는 원인을 파악하기 어려웠고 좀 더 상세한 분석이 필요했다.  
 
 ### MariaDB 로그 확인
-동일한 오류를 발생시켜 `SHOW ENGINE INNODB STATUS` 쿼리로 deadlock 이 발생한 직후 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생해서 로그를 확보하기 어려웠다. (가장 최근의 deadlock 한 개만 보여준다.)  
+동일한 오류를 발생시켜 `SHOW ENGINE INNODB STATUS` 쿼리의 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 가장 최근의 deadlock 만 기록되는 이유로 로그 확인이 어려웠다. (문제가 발생하는 순간 연쇄적으로 다른 deadlock 이 발생하고 있는 듯 했다.)  
+
+그래서 mariadb 에 아래 설정을 추가 후 재기동했고, 이후 발생하는 모든 deadlock 로그를 mysql_error.log 파일에서 확인할 수 있었다.  
 
 ```config
 [mysqld]
 # 모든 데드락 로그를 저장
 innodb_print_all_deadlocks = 1
 ```
-
-그래서 mariadb 설정에 다음 항목을 추가하고 재기동하여 이후 발생하는 모든 deadlock 로그를 mysql_error.log 파일에서 확인할 수 있도록 했다.  
 
 이후 동일한 상황을 발생시켰고 오류 로그를 획득할 수 있었다.  
 
@@ -515,10 +515,10 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 </div>
 </details>
 
-로그 내용을 분석해보면
+로그가 너무 길기 때문에 핵심적인 내용만 확인해보면
 
 - 트랜젝션 7994579 과 7994580 이 동시에 배타적 락을 요청하고
-- 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 교착상황이 발생
+- 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 교착상황이 발생 (lock wait)
 - InnoDB 에서 둘 중 하나를 rollback (victim) 
 
 임을 파악할 수 있었다. (물론 바로 알게된 것은 아니고 엄청난 삽질과 검색의 결과였다.)  
@@ -540,6 +540,9 @@ MariaDB [(none)]> show variables like '%isolation%';
 
 격리수준이나 낙관적락으로 로직을 변경해도 될까?
 
+### 로직적 오류 재연 - 실패
+
+### 쿼리적 오류 재연 - 일부 성공
 
 데드락 발생 시나리오
 ```sql
