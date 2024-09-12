@@ -574,6 +574,26 @@ Query OK, 0 rows affected (0.000 sec)
 ```
 
 col1 컬럼을 이용한 락 확인
+```
+[transaction 1]> START TRANSACTION;
+Query OK, 0 rows affected (0.000 sec)
+[transaction 2]> START TRANSACTION;
+Query OK, 0 rows affected (0.000 sec)
+
+[transaction 1]> SELECT * FROM target_table WHERE col1 = 50 FOR UPDATE;
++----+------+
+| id | col1 |
++----+------+
+|  5 |   50 |
++----+------+
+1 row in set (0.000 sec)
+
+[transaction 2]> SELECT * FROM target_table WHERE col1 = 30 FOR UPDATE;
+ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
+/* timeout 발생 */
+```
+
+
 
 
 ```sql
