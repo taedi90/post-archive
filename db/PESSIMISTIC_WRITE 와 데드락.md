@@ -615,6 +615,19 @@ MariaDB [test]> SELECT * FROM target_table WHERE id IN (1, 5) FOR UPDATE;
 MariaDB thread id 83579, OS thread handle 140215382992640, query id 7197926 localhost root
 
 
+```
+MariaDB [(none)]> SELECT * FROM information_schema.INNODB_LOCKS;
++---------------------+-------------+-----------+-----------+-----------------------+------------+------------+-----------+----------+-----------+
+| lock_id             | lock_trx_id | lock_mode | lock_type | lock_table            | lock_index | lock_space | lock_page | lock_rec | lock_data |
++---------------------+-------------+-----------+-----------+-----------------------+------------+------------+-----------+----------+-----------+
+| 27753272:218104:3:2 |    27753272 | X         | RECORD    | `test`.`target_table` | PRIMARY    |     218104 |         3 |        2 | 1         |
+| 27753271:218104:3:2 |    27753271 | X         | RECORD    | `test`.`target_table` | PRIMARY    |     218104 |         3 |        2 | 1         |
++---------------------+-------------+-----------+-----------+-----------------------+------------+------------+-----------+----------+-----------+
+2 rows in set (0.008 sec)
+
+
+
+```
 
 
 ```sql
