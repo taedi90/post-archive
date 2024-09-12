@@ -515,7 +515,9 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 - 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 교착상황이 발생
 - InnoDB 에서 둘 중 하나를 rollback (victim) 
 
-임을 파악할 수 있었다.  
+임을 파악할 수 있었다. (물론 바로 알게된 것은 아니고 엄청난 삽질과 검색의 결과였다.)  
+
+로그를 보고 생긴 의문점은 '두 트랜젝션이 락을 걸려는 레코드는 서로 다른데 왜 서로 교착이라 판단했으며 gap lock 이란 또 뭘까?'
 
 
 
