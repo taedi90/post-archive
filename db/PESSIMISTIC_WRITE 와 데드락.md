@@ -44,6 +44,7 @@ innodb_print_all_deadlocks = 1
 그래서 mysql 설정에 다음 항목을 추가하고 재기동해주고나서 mysql_error.log 로그에서 deadlock 을 확인할 수 있었다.
 
 <details> <summary>전체 로그</summary>
+<div>
 ```
 2024-09-10 12:38:06 2195 [Note] InnoDB: Transactions deadlock detected, dumping detailed information.
 
@@ -127,6 +128,7 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 2024-09-10 12:38:06 2195 [Note] InnoDB: *** WE ROLL BACK TRANSACTION (0)
 
 ```
+</div>
 </details>
 
 
