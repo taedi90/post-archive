@@ -549,6 +549,31 @@ Query OK, 5 rows affected (0.035 sec)
 Records: 5  Duplicates: 0  Warnings: 0
 ```
 
+id 를 이용한 락 확인
+```
+[transaction 1]> START TRANSACTION;
+Query OK, 0 rows affected (0.000 sec)
+[transaction 2]> START TRANSACTION;
+Query OK, 0 rows affected (0.000 sec)
+
+[transaction 1]> SELECT * FROM target_table WHERE id = 5 FOR UPDATE;
++----+------+
+| id | col1 |
++----+------+
+|  5 |   50 |
++----+------+
+1 row in set (0.000 sec)
+
+[transaction 2]> SELECT * FROM target_table WHERE id = 4 FOR UPDATE;
++----+------+
+| id | col1 |
++----+------+
+|  4 |   20 |
++----+------+
+1 row in set (0.000 sec)
+```
+
+col1 컬럼을 이용한 락 확인
 
 
 ```sql
