@@ -593,6 +593,10 @@ ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction
 /* timeout 발생 */
 ```
 
+2 lock struct(s), heap size 1128, 6 row lock(s)
+MariaDB thread id 83579, OS thread handle 140215382992640, query id 7171893 localhost root
+
+이 때 테이블 전체가 잠긴다
 
 
 
