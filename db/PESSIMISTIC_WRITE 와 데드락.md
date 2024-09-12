@@ -519,11 +519,17 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 
 - 트랜젝션 7994579 과 7994580 이 동시에 배타적 락을 요청하고
 - 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 교착상황이 발생 (lock wait)
-- InnoDB 에서 둘 중 하나를 rollback (victim) 
+- InnoDB 에서 둘 중 하나를 rollback 처리 (victim) 
 
 임을 파악할 수 있었다. (물론 바로 알게된 것은 아니고 엄청난 삽질과 검색의 결과였다.)  
 
-로그를 보고 생긴 의문점은 '두 트랜젝션이 락을 걸려는 레코드는 서로 다른데 왜 서로 교착이라 판단했으며 gap lock 이란 또 뭘까?'
+로그를 보고 생긴 의문점은 
+- 두 트랜젝션이 락을 걸려는 레코드는 서로 다른데 왜 교착이 발생했을까?
+- gap lock 이란 또 뭘까?
+였다.
+
+For update 는 row 단위로 lock 이 발생하는가?
+다른 트랜젝션이 
 
 
 
