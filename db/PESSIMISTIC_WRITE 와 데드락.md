@@ -528,7 +528,8 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 - gap lock 이란 또 뭘까?
 였다.
 
-for update 는 row 단위로 lock 이 발생하는가? 맞다
+for update 는 row 단위로 lock 이 발생하는 것 아닌가? > 조건부
+
 다른 트랜젝션이 
 
 
