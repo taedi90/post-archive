@@ -531,6 +531,18 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 for update 는 row 단위로 lock 이 발생하는 것 아닌가? > 조건부
 
 다른 트랜젝션이 
+/
+
+### 테스트
+테이블 생성
+```
+MariaDB [test]> CREATE TABLE target_table (
+    -> id INT NOT NULL,
+    -> col1 INT DEFAULT NULL,
+    -> PRIMARY KEY (id)
+    -> );
+```
+
 
 
 
