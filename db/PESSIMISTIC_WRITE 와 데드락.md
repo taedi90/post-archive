@@ -20,15 +20,16 @@ completed:
 > - 트랜젝션 오류 시 재시도 로직 추가
 
 ## ⚙️ 환경
-- mariadb 10.8.3
+- mariadb 10.8.3 (InnoDB)
+- Spring boot 
 
 ## 💬 이슈
 사내 솔루션의 비관적 락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 간 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 발생했다.  
 
-오류 시점의 서비스 로그를 파악해보니 의문점이 생겼는데  
+오류 시점의 서비스 로그를 파악해보니 특이점이 있었는데
 - 일반적인 경합에서는 먼저 락을 획득한 트랜젝션이 종료되기 까지 `innodb_lock_wait_timeout` 설정 대로 50초간 대기 후 오류가 발생할 것으로 예상되지만, 문제 상황에서는 lock 획득 시도 후 1초 이내에 데드락 이슈 발생
 - 오류 또한 optimisticLockException 으로 lock 획득 불가 시 발생하는 pessimisticLockException 과 stackTrace 가 달랐음
-
+이런 이유로 로직 상 의도되지 않은(비 일반적인) 문제라 생각하고 내용을 깊게 알아보기로 하였다.
 
 ## 🧗 해결
 ### 원인 파악
