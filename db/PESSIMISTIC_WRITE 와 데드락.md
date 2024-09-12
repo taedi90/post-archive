@@ -21,7 +21,8 @@ completed:
 
 ## ⚙️ 환경
 - mariadb 10.8.3 (InnoDB)
-- Spring boot 
+- Spring boot 2.5.1
+- 
 
 ## 💬 이슈
 사내 솔루션의 비관적 락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 간 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 발생했다.  
