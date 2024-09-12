@@ -27,12 +27,21 @@ completed:
 ## 💬 이슈
 사내 솔루션의 비관적 락(PESSIMISTIC_WRITE) 을 사용하는 로직에 트랜젝션 간 경합이 발생할 경우 간헐적으로 deadlock 이 발생하는 이슈가 발생했다.  
 
+```
+Caused by: javax.persistence.OptimisticLockException: org.hibernate.exception.LockAcquisitionException: could not extract ResultSet
+```
+
 오류 시점의 서비스 로그를 파악해보니 특이점이 있었는데
 - 일반적인 경합에서는 먼저 락을 획득한 트랜젝션이 종료되기 까지 `innodb_lock_wait_timeout` 설정 대로 50초간 대기 후 오류가 발생할 것으로 예상되지만, 문제 상황에서는 lock 획득 시도 후 1초 이내에 데드락 이슈 발생
-- 오류 또한 optimisticLockException 으로 lock 획득 불가 시 발생하는 pessimisticLockException 과 stackTrace 가 달랐음
+- 오류 또한 OptimisticLockException 으로 lock 획득 불가 시 발생하는 PessimisticLockException 과 stackTrace 가 달랐음
 이런 이유로 로직 상 의도되지 않은(비 일반적인) 문제라 생각하고 내용을 깊게 알아보기로 하였다.  
 
 ## 🧗 해결
+글에서는 중요한 내용을  
+
+실제 비즈니스 로직은 트랜젝션이 작은 단위로 이루어져 있지 않고 트랜젝션 내부에 다른 테이블에 대한 insert 및 update , 
+rabbitMQ messageListener 와 
+
 ### 원인 파악
 우선 `SHOW ENGINE INNODB STATUS` 쿼리로 deadlock 이 발생한 직후 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 연쇄적으로 다른 deadlock 이 발생해서 로그를 확보하기 어려웠다. (가장 최근의 deadlock 한 개만 보여준다.)  
 
