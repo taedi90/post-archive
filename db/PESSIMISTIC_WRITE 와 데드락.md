@@ -513,6 +513,10 @@ Record lock, heap no 106 PHYSICAL RECORD: n_fields 16; compact format; info bits
 트랜젝션 7994579 과 7994580 이 `target_table` 의 서로 다른 검색 조건으로 `for update` 구문으로 락을 발생 시키는데 두 트랜젝션 모두 
 배타적 락으로 record 락은 획득했으나 gap lock 은 얻지 못하는 상황이 발생했고
 
+- 트랜젝션 7994579 과 7994580 이 동시에 배타적 락을 요청하고
+- 두 트랜젝션이 record 락은 획득했으나 gap lock 은 얻지 못하는 상황이 발생
+- 
+
 - lock_mode X locks rec but not gap waiting
 
 lock_mode X locks rec but not gap waiting
