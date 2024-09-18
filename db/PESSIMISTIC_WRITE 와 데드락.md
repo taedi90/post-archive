@@ -37,7 +37,7 @@ Caused by: javax.persistence.OptimisticLockException: org.hibernate.exception.Lo
 이런 이유로 로직 상 의도되지 않은(비 일반적인) 문제라 생각하고 내용을 깊게 알아보기로 하였다.  
 
 ## 🧗 해결
-글에는 불필요한 내용을 제외했지만 실제 비즈니스 로직은 트랜젝션이 작은 단위가 아니었다. 다른 테이블에 대한 insert 및 update 도 존재했고, 거기에다 rabbitMQ messageListener 나 redis Rlock 등도 트랜젝션 내 외부에 존재해서 서로 간의 간섭이 있는지도 우려되는 상황이었다. 하지만 서비스 로그만으로는 원인을 파악하기 어려웠고 좀 더 상세한 분석이 필요했다.  
+글에는 불필요한 내용을 제외했지만 실제 비즈니스 로직은 트랜젝션이 작은 단위가 아니었다. 다른 테이블에 대한 insert 및 update 도 존재했고, 거기에다 rabbitMQ messageListener 나 redis RLock 등도 트랜젝션 내 외부에 존재해 서로 간의 간섭이 있는지도 우려되는 상황이었다. 하지만 서비스 로그에서는 원인을 파악하기 어려웠고 좀 더 상세한 분석이 필요했다.  
 
 ### MariaDB 로그 확인
 동일한 오류를 발생시켜 `SHOW ENGINE INNODB STATUS` 쿼리의 'LATEST DETECTED DEADLOCK' 데이터를 확인하려 했지만 가장 최근의 deadlock 만 기록되는 이유로 로그 확인이 어려웠다. (문제가 발생하는 순간 연쇄적으로 다른 deadlock 이 발생하고 있는 듯 했다.)  
