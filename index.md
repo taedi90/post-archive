@@ -1,5 +1,5 @@
 ---
-title: 진짜 너무 어렵다 컴퓨터
+title: 일단은 메모하자!
 draft: false
 tags:
 ---
