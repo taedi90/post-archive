@@ -20,8 +20,8 @@ Total Return 이라는 뜻으로 분배금을 투자자에게 지급하지 않�
 - 
 
 ### 이런 건 좀
-- 배당 소등세 
-- 배당소득세를 
+- 세율 혜택이 있는 ISA 나 연저펀에서 활용할 필요가 있을까
+- 재투자에 대한 공시가 있는가
 
 ## 참고
 - [https://www.seoulfn.com/news/articleView.html?idxno=519418](https://www.seoulfn.com/news/articleView.html?idxno=519418)
