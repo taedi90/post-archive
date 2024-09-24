@@ -28,5 +28,9 @@ completed:
 |비과세 한도|200 만원|400 만원|400 만원|
 |의무기간|3년|3년|3년|
 
+### 괴담
+- ISA 는 3년 이후에 해지해야하기 때문에 배당형 투자의 복리 효과를 기대하기 어렵다?
+	- 해지 시점에 매도후 연금계좌 또는 일반 계좌에서 구매하면 됨
+
 ## 참고
 - [https://www.samsungfund.com/etf/insight/newsroom/view.do?seqn=61554](https://www.samsungfund.com/etf/insight/newsroom/view.do?seqn=61554)
